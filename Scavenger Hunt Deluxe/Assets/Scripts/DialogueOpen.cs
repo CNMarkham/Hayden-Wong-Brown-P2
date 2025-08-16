@@ -12,6 +12,8 @@ public class DialogueOpen : MonoBehaviour
     public bool end = false;
     private string[] collectibles;
     private int clue;
+    private string[] thanks;
+    private string[] notit;
 
     private AudioSource greeting;
 
@@ -19,13 +21,20 @@ public class DialogueOpen : MonoBehaviour
     void Start()
     {
         greeting = GetComponent<AudioSource>();
-        collectibles = new string[] { "film", "balloons", "life saver", "bull's eye", "pipe", "key", "fish", "birdhouse", "red airhorn", "magic hat" };
+        collectibles = new string[] { "film", "balloons", "life saver", "bull's eye", "pipe", "I've lost the key to my house, can you help?", "fish", "birdhouse", "red airhorn", "magic hat" };
+        thanks = new string[] { "film", "balloons", "life saver", "bull's eye", "pipe", "Thank you now I can return home!", "fish", "birdhouse", "red airhorn", "magic hat" };
+        notit = new string[] { "film", "balloons", "life saver", "bull's eye", "pipe", "No that's not my key but please continue looking.", "fish", "birdhouse", "red airhorn", "magic hat" };
         createClue();
     }
 
     public void createClue()
     {
         clue = Random.Range(0, 9);
+        searchDialogue();
+    }
+    public void searchDialogue()
+    {
+        dialogue = collectibles[clue];
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,17 +44,19 @@ public class DialogueOpen : MonoBehaviour
             checkClue();
         }
         greeting.Play(0);
+        interfaceManager.GetComponent<InterfaceManager>().ShowBox(dialogue, clue);
     }
 
     private void checkClue()
     {
         if (pHolding.holdValue == clue)
         {
+            dialogue = thanks[clue] ;
             end = true;
         }
         else
         {
-
+            dialogue = "No, that's not my " + notit[clue] + ".";
         }
     }
 

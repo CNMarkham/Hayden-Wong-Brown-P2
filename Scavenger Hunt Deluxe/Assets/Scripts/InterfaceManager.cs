@@ -13,28 +13,45 @@ public class InterfaceManager : MonoBehaviour
     public GameObject npc;
     public GameObject randomSpawn;
 
+    public Image collectible;
+    public GameObject showSprite;
+
     [SerializeField]
     private Sprite[] collectibleSource;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        dialogueBox.SetActive(false);
+        showSprite.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButton("Submit") && dialogueBox.activeInHierarchy)
+        {
+            dialogueBox.SetActive(false);
 
+            if (npc.GetComponent<DialogueOpen>().end)
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
     }
 
     public void CollectibleUpdate(int item)
     {
-
+        showSprite.SetActive(true);
+        collectible.GetComponent<Image>().sprite = collectibleSource[item];
     }
 
     public void ShowBox(string dialogue, int item)
     {
+        dialogueBox.SetActive(true);
+        dialogueText.text = dialogue;
+        seekImage.GetComponent<Image>().sprite = collectibleSource[item];
+
         if (npc.GetComponent<DialogueOpen>().begin)
         {
             scatterCoins();
