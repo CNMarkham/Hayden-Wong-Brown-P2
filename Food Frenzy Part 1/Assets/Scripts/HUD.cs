@@ -7,7 +7,6 @@ using TMPro;
 public class HUD : MonoBehaviour
 {
     public Level level;
-
     public TMP_Text remainingText;
     public TMP_Text remainingLabel;
     public TMP_Text targetText;

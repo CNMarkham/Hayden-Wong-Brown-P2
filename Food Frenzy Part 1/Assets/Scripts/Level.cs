@@ -31,7 +31,7 @@ public class Level : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        
+        HUD.instance.SetScore(currentScore);
     }
 
     // Update is called once per frame
@@ -63,6 +63,7 @@ public class Level : MonoBehaviour
     {
         //Update Score
         currentScore += piece.score;
+        HUD.instance.SetScore(currentScore);
     }
 
     protected virtual IEnumerator WaitForGridFill()
@@ -70,6 +71,15 @@ public class Level : MonoBehaviour
         while (grid.IsFilling)
         {
             yield return 0;
+        }
+
+        if (didWin && !grid.IsFilling)
+        {
+            HUD.instance.OnGameWin(currentScore);
+        }
+        else
+        {
+            HUD.instance.OnGameLose();
         }
     }
 }

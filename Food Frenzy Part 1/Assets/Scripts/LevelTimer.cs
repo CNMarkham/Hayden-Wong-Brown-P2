@@ -12,6 +12,10 @@ public class LevelTimer : Level
     void Start()
     {
         type = LevelType.TIMER;
+        HUD.instance.SetLevelType(type);
+        HUD.instance.SetScore(currentScore);
+        HUD.instance.SetTarget(targetScore);
+        HUD.instance.SetRemaining(TimerString());
     }
 
     // Update is called once per frame
@@ -20,6 +24,7 @@ public class LevelTimer : Level
         if (!timeOut)
         {
             timer += Time.deltaTime;
+            HUD.instance.SetRemaining(TimerString());
 
             if (timeInSeconds - timer <= 0)
             {

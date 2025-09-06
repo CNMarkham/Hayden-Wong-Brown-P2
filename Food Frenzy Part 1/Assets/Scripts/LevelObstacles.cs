@@ -15,6 +15,10 @@
         {
             numObstaclesLeft += grid.GetPiecesOfType(obstacleTypes[i]).Count;
         }
+        HUD.instance.SetLevelType(type);
+        HUD.instance.SetScore(currentScore);
+        HUD.instance.SetTarget(numObstaclesLeft);
+        HUD.instance.SetRemaining(numMoves);
     }
 
     // Update is called once per frame
@@ -28,6 +32,8 @@
         base.OnMove();
 
         movesUsed++;
+
+        HUD.instance.SetRemaining(numMoves - movesUsed);
 
         if (numMoves - movesUsed == 0 && numObstaclesLeft > 0)
         {
@@ -44,6 +50,8 @@
             if(obstacleTypes[i] == piece.Type)
             {
                 numObstaclesLeft--;
+
+                HUD.instance.SetTarget(numObstaclesLeft);
 
                 if (numObstaclesLeft == 0)
                 {
