@@ -1667,6 +1667,7 @@ GameObject:
   - component: {fileID: 8717898268564881168}
   - component: {fileID: 5938988958478189093}
   - component: {fileID: 6096913032758464753}
+  - component: {fileID: 4713764067221800798}
   m_Layer: 5
   m_Name: Game Over
   m_TagString: Untagged
@@ -1754,6 +1755,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4713764067221800798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6464241650835338992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e791a365a303714c8ded3a57670d0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starsImage: {fileID: 3758483251720959502}
+  scoreText: {fileID: 2288873261517400592}
+  loseText: {fileID: 1296958228232680589}
+  replayButton: {fileID: 3240173145990053627}
+  doneButton: {fileID: 8613394532313106023}
 --- !u!1 &8071322395810597592
 GameObject:
   m_ObjectHideFlags: 0
